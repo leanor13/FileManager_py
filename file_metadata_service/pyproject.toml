@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "file_mgmt_service"
+name = "file_metadata_service"
 version = "0.1.0"
 description = "FileManager in Python Django"
 authors = ["Yulia"]
 readme = "README.md"
 packages = [	
-	{ include = "file_mgmt_service" }
+	{ include = "file_metadata_service" }
 ]
 
 [tool.poetry.dependencies]
