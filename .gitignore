@@ -1,0 +1,82 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+lib/
+lib64/
+parts/
+var/
+sdist/
+wheels/
+share/python-wheels/
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environment
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Poetry
+poetry.lock
+
+# Pyre type checker
+.pyre/
+
+# mypy
+.mypy_cache/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media
+staticfiles
+local_settings.py
+.env
+
+# Django Migrations
+*/migrations/*
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+.vscode/
+
+# IDEs and editors
+*.swp
+*~
+
+# Logs and databases
+*.sql
+*.sqlite
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# End of custom .gitignore

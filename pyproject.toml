@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "file_mgmt_service"
+version = "0.1.0"
+description = "FileManager in Python Django"
+authors = ["Yulia"]
+readme = "README.md"
+packages = [	
+	{ include = "file_mgmt_service" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+Django = "^5.0.7"
+psycopg2-binary = "^2.9.9"
+django-storages = "^1.14.4"
+minio = "^7.2.7"
+djangorestframework = "^3.15.2"
+celery = "^5.4.0"
+kombu = "^5.3.7"
+amqp = "^5.2.0"
+python-consul = "^1.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
