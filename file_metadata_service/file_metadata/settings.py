@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'metadata',
+    'rest_framework',
+    # 'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'file_metadata_service.urls'
+ROOT_URLCONF = 'file_metadata.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'file_metadata_service.wsgi.application'
+WSGI_APPLICATION = 'file_metadata.wsgi.application'
 
 
 # Database
@@ -75,8 +78,12 @@ WSGI_APPLICATION = 'file_metadata_service.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'file_management_db',
+        'USER': 'file_user',
+        'PASSWORD': 'logic',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
