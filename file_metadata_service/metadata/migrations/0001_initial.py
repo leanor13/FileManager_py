@@ -7,19 +7,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='FileMetadata',
+            name="FileMetadata",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file_url', models.TextField(unique=True)),
-                ('file_name', models.CharField(max_length=255)),
-                ('file_type', models.CharField(max_length=50)),
-                ('file_size', models.PositiveIntegerField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file_url", models.TextField(unique=True)),
+                ("file_name", models.CharField(max_length=255)),
+                ("file_type", models.CharField(max_length=50)),
+                ("file_size", models.PositiveIntegerField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]

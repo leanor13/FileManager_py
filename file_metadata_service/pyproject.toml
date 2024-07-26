@@ -19,7 +19,11 @@ celery = "^5.4.0"
 kombu = "^5.3.7"
 amqp = "^5.2.0"
 python-consul = "^1.1.0"
+django-filter = "^24.2"
 
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.1"
 
 [build-system]
 requires = ["poetry-core"]
