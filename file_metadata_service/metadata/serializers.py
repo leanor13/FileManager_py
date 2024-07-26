@@ -9,12 +9,14 @@ from django.conf import settings
 class FileMetadataSerializer(serializers.ModelSerializer):
     class Meta:
         model = FileMetadata
-        fields = ['file_url']
+        fields = ["file_url"]
 
     def create(self, validated_data):
         # Here we'll extract metadata from MinIO
-        file_url = validated_data.get('file_url')
-        file_type, file_size, file_name, file_url_clean = get_metadata_from_minio(file_url)
+        file_url = validated_data.get("file_url")
+        file_type, file_size, file_name, file_url_clean = get_metadata_from_minio(
+            file_url
+        )
 
         file_metadata = FileMetadata(
             file_url=file_url_clean,
@@ -40,7 +42,7 @@ def get_metadata_from_minio(file_url):
         settings.MINIO_URL,
         access_key=settings.MINIO_ACCESS_KEY,
         secret_key=settings.MINIO_SECRET_KEY,
-        secure=settings.MINIO_SECURE
+        secure=settings.MINIO_SECURE,
     )
 
     try:
@@ -52,27 +54,27 @@ def get_metadata_from_minio(file_url):
 
         file_type = stat.content_type
         file_size = stat.size
-        file_name = file_url.split('/')[-1]
-        file_url_clean = file_url.split('?')[0]
+        file_name = file_url.split("/")[-1]
+        file_url_clean = file_url.split("?")[0]
 
         # Additional validations
         if file_size <= 0:
             raise serializers.ValidationError("File size must be greater than zero")
         if not file_type:
-            file_type = 'application/octet-stream'  # Default type if not provided
+            file_type = "application/octet-stream"  # Default type if not provided
 
         return file_type, file_size, file_name, file_url_clean
     except S3Error as err:
-        raise serializers.ValidationError(f'Error retrieving metadata: {str(err)}')
+        raise serializers.ValidationError(f"Error retrieving metadata: {str(err)}")
 
 
 def extract_bucket_and_object(file_url):
     # Logic to extract bucket and object name from the URL
     # TODO: Example placeholder; adjust according to your URL structure
     parsed_url = urlparse(file_url)
-    path_parts = parsed_url.path.lstrip('/').split('/')
+    path_parts = parsed_url.path.lstrip("/").split("/")
     bucket_name = path_parts[0]
-    object_name = '/'.join(path_parts[1:])
+    object_name = "/".join(path_parts[1:])
     return bucket_name, object_name
 
 
