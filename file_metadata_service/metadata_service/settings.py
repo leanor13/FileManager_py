@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "metadata",
     "rest_framework",
+    "django_filters",
     # 'django_celery_results',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
