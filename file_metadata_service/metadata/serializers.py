@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import FileMetadata
 from minio import Minio
 from minio.error import S3Error
+from django.conf import settings
 
 
 class FileMetadataSerializer(serializers.ModelSerializer):
@@ -32,12 +33,14 @@ def get_metadata_from_minio(file_url):
 
     # TODO: This is a placeholder; replace with actual MinIO interaction
     # TODO: add validations for url, size, etc
+    # TODO: add error handling
+    # TODO: add minio validations
     # TODO: move credentials to settings
     minio_client = Minio(
-        'minio.example.com',
-        access_key='minioadmin',
-        secret_key='minioadmin',
-        secure=True
+        settings.MINIO_URL,
+        access_key=settings.MINIO_ACCESS_KEY,
+        secret_key=settings.MINIO_SECRET_KEY,
+        secure=settings.MINIO_SECURE
     )
 
     try:
@@ -62,6 +65,7 @@ def get_metadata_from_minio(file_url):
     except S3Error as err:
         raise serializers.ValidationError(f'Error retrieving metadata: {str(err)}')
 
+
 def extract_bucket_and_object(file_url):
     # Logic to extract bucket and object name from the URL
     # TODO: Example placeholder; adjust according to your URL structure
@@ -70,6 +74,7 @@ def extract_bucket_and_object(file_url):
     bucket_name = path_parts[0]
     object_name = '/'.join(path_parts[1:])
     return bucket_name, object_name
+
 
 def validate_url(file_url):
     parsed_url = urlparse(file_url)
